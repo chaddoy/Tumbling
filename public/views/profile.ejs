@@ -1,0 +1,188 @@
+<%= include header %>
+	<%= include nav %>
+		<%= include aside %>
+		<section>
+		<% if(params[0] || params[1] || params[2]) { %>
+
+			<nav class="edit">
+				<ul>
+					<li><a href="/me/edit_account">Account</a></li>
+					<li><a href="/me/edit_password">Password</a></li>
+					<li><a href="/me/edit_avatar">Avatar</a></li>
+				</ul>
+			</nav>
+
+			<article class="edit">
+			<%
+				var formTitle = '';
+				if(params[0]) formTitle = 'Account';
+				if(params[1]) formTitle = 'Password';
+				if(params[2]) formTitle = 'Avatar';
+			%>
+				<h1><%= formTitle %></h1>
+
+				<div class="msgToUser">
+				<%
+					if(notice != '') {
+						if(notice[0].type == 'error') {
+				%>
+					<span style="color: #900;"><%= notice[0].message %></span>
+				<%
+						} else {
+				%>
+					<%= notice[0].message %>
+				<%
+						}
+					}
+				%>
+				</div>
+
+			<% if(params[0]) { %>
+				<form action="/updateAccount" method="post">
+					<input type="hidden" name="_method" value="put" />
+					<input type="hidden" name="edit" value="account" />
+					<div class="row">
+						<p>Username</p>
+						<input type="text" name="username" value="<%= user.username %>" required="required" />
+					</div>
+					<div class="row">
+						<p>Email</p>
+						<input type="email" name="email" value="<%= user.email %>" required="required" />
+					</div>
+					<div class="row">
+						<input type="submit" name="saveChanges" class="btn" value="Save Changes" />
+					</div>
+					<div class="row">
+						<a href="#">
+							Delete my account
+						</a>
+					</div>
+				</form>
+				<script type="text/javascript">
+					$(document).ready(function() {
+						$('nav.edit ul li:first-child').addClass('current');
+					});
+				</script>
+			<% } %>
+
+			<% if(params[1]) { %>
+				<form action="/updatePassword" id="changePass" method="post">
+					<input type="hidden" name="_method" value="put" />
+					<input type="hidden" name="edit" value="password" />
+					<div class="row">
+						<p>Old Password</p>
+						<input type="password" name="oldPass" required="required" />
+					</div>
+					<div class="row">
+						<p>New Password</p>
+						<input type="password" name="pass1" required="required" />
+					</div>
+					<div class="row">
+						<p>Re-type New Password</p>
+						<input type="password" name="pass2" required="required" />
+					</div>
+					<div class="row">
+						<input type="submit" name="saveChanges" class="btn" value="Save Changes" />
+					</div>
+				</form>
+				<script type="text/javascript">
+					$(document).ready(function() {
+						$('nav.edit ul li:nth-child(2)').addClass('current');
+					});
+				</script>
+			<% } %>
+
+			<% if(params[2]) { %>
+				<form action="/updateAvatar" id="updateAvatar" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="_method" value="put" />
+					<input type="hidden" name="edit" value="avatar" />
+					<div class="row">
+						<p>Upload a photo</p>
+						<div class="avatar" style="background-image: url(<%= user.profilePic %>);"></div>
+						<div class="file">
+							<input type="file" name="profilePic" accept="image/*" required="required" /><br />
+							<span>JPG, GIF or PNG, Max size: 2MB</span>
+						</div>
+						<br clear="all" />
+					</div>
+					<div class="row">
+						<input type="submit" name="saveChanges" class="btn" value="Save Changes" />
+					</div>
+				</form>
+				<script type="text/javascript">
+					$(document).ready(function() {
+						$('nav.edit ul li:nth-child(3)').addClass('current');
+					});
+				</script>
+			<% } %>
+			</article>
+
+			<br clear="all" />
+		
+		<% } else { %>
+
+			<header>
+				<a href="/me/edit_account">
+					<span>Edit</span>
+				</a>
+				<div style="background-image: url(<%= user.profilePic %>);"></div>
+				<h2><%= user.username %></h2>
+				<p>My Collections</p>
+			</header>
+			<nav class="profile">
+				<ul>
+					<li><strong><%= post != '' ? post[0].image.length : '0' %> Posts</strong></li>
+				</ul>
+				<% if(post != '') { %>
+				<button type="button" class="btn uploadPost" style="margin: -49px 10px 0px 0px; float: right;">Upload a post</button>
+				<% } %>
+				<div class="msgToUser" style="width: 200px; margin: auto; color: #669900; margin-top: -40px; font-size: 16px; text-align: center; font-weight: bold;">
+				<%
+					if(notice != '') {
+						if(notice[0].type == 'error') {
+				%>
+					<span style="color: #900;"><%= notice[0].message %></span>
+				<%
+						} else {
+				%>
+					<%= notice[0].message %>
+				<%
+						}
+					}
+				%>
+				</div>
+			</nav>
+			<article class="post">
+			<%
+				if(post == '') {
+			%>
+				<div id="uploadWrapper">
+					<p>Your profile is a bit dull.</p>
+					<button type="button" class="btn uploadPost">
+						Upload a post
+					</button>
+				</div>
+			<%
+				} else {
+					var posts = post[0].image;
+
+					posts.reverse().forEach(function(image) {
+			%>
+				<figure>
+					<figcaption>
+						<h3><%= image.title %></h3>
+						<p><a href="#" id="deletePost" data-id="<%= image._id %>" data-ext="<%= image.path.split('.').pop() %>" onclick="return false;">Delete this post</a></p>
+					</figcaption>
+					<img src="<%= image.path %>" width="400px;" />
+					<br clear="all" />
+				</figure>
+			<%
+					});
+				}
+			%>
+			</article>
+
+		<% } %>
+
+		</section>
+<%= include footer %>

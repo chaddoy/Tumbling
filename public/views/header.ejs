@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="/css/style.css" />
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('section header').mouseover(function() {
+				$('section header a').show();
+			});
+			$('section header').mouseout(function() {
+				$('section header a').hide();
+			});
+			$('#changePass').submit(function() {
+				var pass1 = $(this).find('input[name="pass1"]').val();
+				var pass2 = $(this).find('input[name="pass2"]').val();
+
+				if(pass1 !== pass2) {
+					$('.msgToUser').text('New Passwords didn\'t matched.');
+					$('.msgToUser').css('color', '#900');
+					return false;
+				}
+			});
+			$('#updateAvatar').submit(function() {
+				var file = $(this).find('input[name="profilePic"]').val().split('.');
+				var	allowed = [ 'jpg', 'png', 'gif' ];
+				var	extension = file[file.length -1];
+
+				if(allowed.indexOf(extension) === -1) {
+					$('.msgToUser').text('Invalid file extension.');
+					$('.msgToUser').css('color', '#900');
+					return false;
+				}
+			});
+
+			var bodyWidth = $('body').width();
+			var bodyHeight = $('body').height();
+			var modalBG = $('#modal-bg');
+			var modalForm = $('#modal-form');
+
+			modalBG.hide();
+			function centerModal(element) {
+				$(window).resize(function() {
+					$(element).css({
+						position:'absolute',
+						left: ($(window).width() - $(element).outerWidth()) / 4,
+						top: ($(window).height() - $(element).outerHeight()) / 3
+					});
+				});
+			}
+			modalBG.height(bodyHeight);
+			/*
+			modalBG.height(bodyHeight);
+			modalForm.css('margin-top', (bodyHeight / 2) - 140 +'px');
+			console.log(bodyWidth);
+			*/
+
+			$('#btn-close').click(function() {
+				modalBG.hide();
+			});
+			$('.uploadPost').click(function() {
+				centerModal('#modal-form');
+				modalBG.show();
+			});
+			$('#uploadPost').submit(function() {
+				var file = $(this).find('input[name="post"]').val().split('.');
+				var	allowed = [ 'jpg', 'png', 'gif' ];
+				var	extension = file[file.length -1];
+
+				if(allowed.indexOf(extension) === -1) {
+					$('.msgToUser').text('Invalid file extension.');
+					$('.msgToUser').css('color', '#900');
+					return false;
+				}
+			});
+			$('figure figcaption p').hide();
+			$('figure').mouseover(function() {
+				$(this).find('figcaption p').show();
+			});
+			$('figure').mouseout(function() {
+				$('figure figcaption p').hide();
+			});
+
+			$(document).on('click', '#deletePost', function() {
+				var p = $(this).parent();
+				var id = $(this).attr('data-id');
+				var ext = $(this).attr('data-ext');
+				p.html('<form action="/deletePost" method="post"><a>Are you sure?</a><br /><input type="hidden" name="postId" value="'+ id +'" /><input type="hidden" name="ext" value="'+ ext +'" /><button class="btn" style="padding: 3px; margin-top: 5px;">Yes</button><button type="button" class="btn" style="padding: 3px; margin-top: 5px; margin-left: 5px;">No</button></form>');
+			});
+		});
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="modal-bg">
+			<div id="modal-form" class="upload">
+				<div id="btn-close">&times;</div>
+				<form action="/uploadPost" id="uploadPost" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="_method" value="put" />
+					<div class="row">
+						<h1>Upload a Post</h1>
+						<div class="msgToUser"></div>
+						<br />
+						<p>Title</p>
+						<input type="text" name="title" required="required" />
+					</div>
+					<div class="row">
+						<p>Select a photo</p>
+						<input type="file" name="image" accept="image/*" required="required" />
+					</div>
+					<div class="row">
+						<button type="submit" class="btn">Upload</button>
+					</div>
+				</form>
+			</div>
+		</div>

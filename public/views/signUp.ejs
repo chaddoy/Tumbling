@@ -1,0 +1,18 @@
+<%= include header %>
+		<div class="loginSignUp">
+			<h1>tumbling.</h1><br />
+			<p>
+				Follow the trending news<br />
+				that would make your heart tumbling<sup>2</sup>.
+			</p>
+			<form action="/signUp" method="post">
+				<div><strong style="color: #900;"><%= message %></strong></div>
+				<input type="email" name="email" placeholder="Email" required="required" /><br />
+				<input type="password" name="password" placeholder="Password" required="required" /><br />
+				<input type="text" name="username" placeholder="Username" required="required" /><br />
+				<button>Sign up</button><br />
+			</form>
+			<br />
+			<a href="/login"><strong>Login</strong> to your dashboard.</a>
+		</div>
+<%= include footer %>

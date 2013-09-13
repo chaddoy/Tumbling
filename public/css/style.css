@@ -1,0 +1,309 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+	color: #00B7FF;
+	list-style: none;
+	text-decoration: none;
+	text-shadow: 1px 1px #CCC;
+}
+.btn {
+	background-color: #0087f7;
+	border-radius: 4px;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 10px;
+	border: none;
+	color: #FFF;
+}
+li {
+	list-style: none;
+}
+.row {
+	padding: 8px 0px;
+}
+.row p {
+	font-weight: bold;
+}
+.row input[type="file"] {
+	padding: 10px 0px;
+}
+.row input[type="submit"] {
+	margin: 15px 0px 0px 0px;
+}
+input[type="text"], input[type="email"], input[type="password"] {
+	border: 1px solid #CCC;
+	padding: 10px 5px;
+	width: 400px;
+}
+#btn-close {
+	border: 4px solid;
+	border-radius: 10000px;
+	padding: 2px 12px 0px 12px;
+	font-size: 40px;
+	float: right;
+	margin: -45px -60px 0px 0px;
+	background-color: #0087f7;
+	color: #FFF;
+	box-shadow: -4px 4px 10px #666;
+	cursor: pointer;
+}
+
+#modal-bg {
+	position: absolute;
+	width: 900px;
+	background-image: url(/images/backgrounds/modal-bg.png);
+}
+#modal-form {
+	border-radius: 4px;
+	box-shadow: 0px 0px 20px #666;
+	background-color: #FFF;
+	width: 400px;
+	padding: 20px 40px;
+	margin: auto;
+}
+#modal-form input[type="text"] {
+	width: 390px;
+	margin: 8px 0px;
+}
+
+#wrapper {
+	width: 900px;
+	margin: auto;
+}
+header {
+	padding: 15px;
+}
+header h1 {
+	float: left;
+}
+header nav {
+	float: right;
+}
+header nav:nth-child(2) {
+	margin: 0px 0px 0px 20px;
+	float: left;
+}
+header nav ul {
+	margin: 8px 0px 0px 0px;
+}
+header nav li {
+	width: 60px;
+	height: 20px;
+	display: inline-block;
+	text-align: center;
+}
+header nav li a:hover {
+	font-weight: bold;
+}
+aside {
+	border: 1px solid;
+	float: right;
+	width: 209px;
+}
+section {
+	border: 1px solid;
+	width: 610px;
+}
+article {
+	padding: 20px;
+}
+.profilePic {
+	border: 1px solid;
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+.postWrapper {
+	border: 1px solid;
+	width: 420px;
+	padding: 10px;
+	float: right;
+}
+.postWrapper h5 {
+	color: #666;
+}
+.postWrapper .post {
+	border: 1px solid;
+	margin: 20px 0px 15px 0px;
+}
+.postWrapper footer {
+	border: 1px solid;
+	padding: 8px;
+}
+
+/* DELETE POST */
+.delete form {
+	box-shadow: 0px 0px 20px #666;
+	border: 1px solid #FFF;
+	background-color: #FFF;
+	border-radius: 4px;
+	padding: 20px 40px;
+	height: 125px;
+	width: 400px;
+	margin: auto;
+}
+
+/* PROFILE */
+section header {
+	background-color: #000;
+	text-align: center;
+	padding: 20px;
+	color: #999999;
+}
+section header a {
+	display: none;
+}
+section header span {
+	margin: -10px -5px 0px 0px;
+	text-shadow: none;
+	font-size: 12px;
+	float: right;
+	color: #FFF;
+}
+section header span:hover {
+	text-decoration: underline;
+}
+section header div, section header img { /* PROFILE PIC */
+	background-position: center;
+	background-size: 150px;
+	background-color: #FFF;
+	border: 2px solid #FFF;
+	border-radius: 5px;
+	width: 130px;
+	height: 130px;
+	margin: auto;
+}
+section h2 {
+	padding: 10px;
+}
+section nav.profile ul {
+	border-bottom: 1px solid #CCC;
+}
+section nav.profile ul li {
+	border-bottom: 3px solid;
+	display: inline-block;
+	cursor: pointer;
+	padding: 20px 10px;
+}
+section nav ul li:hover {
+	border-color: #900;
+}
+section article #uploadWrapper {
+	padding: 100px;
+	text-align: center;
+}
+section article #uploadWrapper p {
+	padding: 15px;
+	color: #666;
+}
+.post figure {
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #999;
+	padding: 40px 0px;
+}
+.post figure:first-child {
+	border-top: none;
+}
+.post figure:last-child {
+	border-bottom: none;
+}
+.post figcaption {
+	float: right;
+}
+.post figcaption h3 {
+	padding: 8px;
+	width: 140px;
+	border-bottom: 1px solid #999;
+}
+.post figcaption p {
+	padding: 8px;
+}
+section nav.edit {
+	margin: 20px 0px;
+	float: left;
+}
+section nav.edit li {
+	border-radius: 3px;
+	font-weight: bold;
+	padding: 10px 14px;
+	width: 150px;
+	color: #999;
+}
+section nav.edit li a {
+	text-shadow: none;
+	color: #999;
+}
+section nav.edit li.current {
+	background-color: #2d72d9;
+}
+section nav.edit li.current a {
+	text-shadow: none;
+	color: #FFF;
+}
+section article.edit {
+	padding: 20px 0px;
+	width: 420px;
+	float: right;
+}
+section article.edit h1 {
+	font-size: 30px;
+}
+section article.edit .msgToUser {
+	font-weight: bold;
+	font-size: 16px;
+	color: #669900;
+}
+section article.edit form {
+	padding: 20px 0px;
+}
+section article.edit form p {
+	font-weight: bold;
+	padding: 6px 0px;
+}
+section article.edit form .avatar {
+	background-position: center;
+	margin: 0px 10px 0px 0px;
+	background-size: 100px;
+	border: 1px solid #999;
+	border-radius: 4px;
+	height: 80px;
+	width: 80px;
+	float: left;
+}
+section article.edit form .file {
+	margin: 20px 0px 0px 0px;
+}
+section article.edit form .file input {
+	margin: 0px 0px 8px 0px;
+	color: #999;
+}
+section article.edit form .file span {
+	font-size: 12px;
+	color: #999;
+}
+
+.loginSignUp {
+	text-align: center;
+	width: 450px;
+	margin: auto;
+	margin-top: 60px;
+	padding: 10px;
+}
+.loginSignUp input {
+	border: 1px solid #666;
+	padding: 8px 10px;
+	width: 200px;
+}
+.loginSignUp button {
+	padding: 8px 10px;
+	width: 225px;
+	margin: 10px 0px 0px 0px
+}
+.loginSignUp div {
+	padding: 10px;
+}
